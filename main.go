@@ -19,16 +19,19 @@ func main() {
 	fmt.Println("Введи Точность:")
 	fmt.Scan(&t)
 	t = math.Pow(0.1, t)
-	for a > t {
-		n++
-		ta++
-		la *= float64(n)
-		a = ta / la
-		e += a
-		fmt.Printf("n: %d; ta: %f; la: %f; a: %f; e: %v\n", n, ta, la, a, e)
-
+	if e == 0 {
+		e = math.Pow(math.E, 0)
+		fmt.Println("Ты зочем пидр вводишь нули???")
+		fmt.Printf("e=%v при точности = %f и n=%d. Проверочная e вычесленная ПК: %f\n", e, t, n, math.Pow(math.E, 0))
+	} else {
+		for a > t {
+			n++
+			ta++
+			la *= float64(n)
+			a = ta / la
+			e += a
+			//fmt.Printf("n: %d; ta: %f; la: %f; a: %f; e: %v\n", n, ta, la, a, e)
+		}
+		fmt.Printf("e=%v при точности = %f и n=%d. Проверочная e вычесленная ПК: %f\n", e, t, n, math.Pow(math.E, t))
 	}
-	fmt.Printf("e=%v при точности = %f и n=%d. Проверочная e вычесленная ПК: %f", e, t, n, math.E)
-	//fmt.Printf("\nEND n: %d; ta: %f; la: %f; a: %f; e: %f", n, ta, la, a, e)
-
 }
